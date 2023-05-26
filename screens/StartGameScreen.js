@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Alert } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import { View, StyleSheet, TextInput, Alert } from "react-native";
+import { Colors } from "../constants/colors";
+import PrimaryButton from "../components/UI/PrimaryButton";
 
-export default function StartGameScreen() {
-  const [selectedNumber, setSelectedNumber] = useState("");
+export default function StartGameScreen({ onSelectNumber }) {
+  const [temporalSelectedNumber, setTemporalSelectedNumber] = useState("");
   const isValidNumber = (number) => !isNaN(number) && number >= 0;
 
   function saveSelectedNumber() {
-    if (!isValidNumber(selectedNumber)) {
+    setTemporalSelectedNumber(temporalSelectedNumber);
+
+    if (!isValidNumber(temporalSelectedNumber)) {
       Alert.alert("Error", "Your number should be positive!", [
         {
           text: "Ok",
@@ -15,14 +18,15 @@ export default function StartGameScreen() {
           style: "destructive",
         },
       ]);
+      return;
     }
 
-    setSelectedNumber(selectedNumber);
+    onSelectNumber(temporalSelectedNumber);
   }
 
   function resetSelectedNumber() {
-    setSelectedNumber("");
-    console.log(selectedNumber);
+    setTemporalSelectedNumber("");
+    onSelectNumber("");
   }
 
   return (
@@ -33,14 +37,14 @@ export default function StartGameScreen() {
           inputMode="numeric"
           maxLength={2}
           placeholder="Enter a number..."
-          placeholderTextColor={"#e4e3df"}
-          value={selectedNumber}
-          onChangeText={setSelectedNumber}
+          placeholderTextColor={"white"}
+          value={temporalSelectedNumber}
+          onChangeText={setTemporalSelectedNumber}
         />
         <View style={styles.buttonsContainer}>
           <PrimaryButton
             style={styles.button}
-            textColor="#e4e3df"
+            textColor="white"
             textSize={18}
             onPress={resetSelectedNumber}
           >
@@ -49,7 +53,7 @@ export default function StartGameScreen() {
           <PrimaryButton
             textSize={18}
             style={styles.button}
-            textColor="#e4e3df"
+            textColor="white"
             onPress={saveSelectedNumber}
           >
             Confirm
@@ -62,17 +66,14 @@ export default function StartGameScreen() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 80,
+    marginTop: 60,
     flexDirection: "column",
-    backgroundColor: "#cce4e4",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
   boxContainer: {
     flexDirection: "column",
     minWidth: "90%",
-    minHeight: "22%",
-    backgroundColor: "#9dc9b9",
+    minHeight: "45%",
+    backgroundColor: Colors.green500,
     alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    color: "#e4e3df",
+    color: "white",
     fontSize: 28,
   },
   buttonsContainer: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 35,
     marginVertical: 4,
-    backgroundColor: "#8fa091",
+    backgroundColor: Colors.green700,
     justifyContent: "center",
     alignItems: "center",
     borderTopLeftRadius: 10,

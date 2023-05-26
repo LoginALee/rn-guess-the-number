@@ -18,7 +18,7 @@ export default function PrimaryButton({
       }
     >
       <View style={style}>
-        <Text>{children}</Text>
+        <Text style={buttonStyle}>{children}</Text>
       </View>
     </Pressable>
   );

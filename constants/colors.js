@@ -4,4 +4,5 @@ export const Colors = {
   green700: "#8fa091",
   blue800: "#3c8080",
   blue900: "#2e6262",
+  blueMint: "#00ffff",
 };

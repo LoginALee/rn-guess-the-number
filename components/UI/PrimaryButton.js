@@ -8,7 +8,11 @@ export default function PrimaryButton({
   textSize,
   onPress,
 }) {
-  const buttonStyle = { color: textColor, fontSize: textSize };
+  const buttonStyle = {
+    color: textColor,
+    fontSize: textSize,
+    fontFamily: "RobotoMono_400Regular",
+  };
 
   return (
     <Pressable

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   title: {
     width: "80%",
     fontWeight: "800",
+    fontFamily: "RobotoMono_400Regular",
     fontSize: 26,
     borderWidth: 4,
     padding: 10,

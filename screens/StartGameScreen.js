@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Alert } from "react-native";
 import { Colors } from "../constants/colors";
 import PrimaryButton from "../components/UI/PrimaryButton";
+import Box from "../components/UI/Box";
 
 export default function StartGameScreen({ onSelectNumber }) {
   const [temporalSelectedNumber, setTemporalSelectedNumber] = useState("");
@@ -31,7 +32,7 @@ export default function StartGameScreen({ onSelectNumber }) {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.boxContainer}>
+      <Box>
         <TextInput
           style={styles.textInput}
           inputMode="numeric"
@@ -59,7 +60,7 @@ export default function StartGameScreen({ onSelectNumber }) {
             Confirm
           </PrimaryButton>
         </View>
-      </View>
+      </Box>
     </View>
   );
 }
@@ -69,26 +70,11 @@ const styles = StyleSheet.create({
     marginTop: 60,
     flexDirection: "column",
   },
-  boxContainer: {
-    flexDirection: "column",
-    minWidth: "90%",
-    minHeight: "45%",
-    backgroundColor: Colors.green500,
-    alignItems: "center",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    padding: 8,
-  },
   textInput: {
     flex: 1,
     color: "white",
     fontSize: 28,
+    fontFamily: "RobotoMono_400Regular",
   },
   buttonsContainer: {
     flexDirection: "column",

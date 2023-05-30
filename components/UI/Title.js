@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
   mainContainer: {},
   title: {
     fontWeight: "800",
+    fontFamily: "RobotoMono_400Regular",
     fontSize: 26,
     borderWidth: 4,
     padding: 10,
-    marginVertical: 10,
+    marginVertical: 14,
     textAlign: "center",
   },
 });

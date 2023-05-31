@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Alert, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Alert,
+  FlatList,
+  useWindowDimensions,
+} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Colors } from "../constants/colors";
 import PrimaryButton from "../components/UI/PrimaryButton";
@@ -13,6 +20,8 @@ export default function GameScreen({
   onGuess,
   guesses,
 }) {
+  const { width, height } = useWindowDimensions();
+
   const guessesArray = Array.from(guesses);
   const formattedGuesses = guessesArray.map((guess) => ({
     id: `${Math.random()} ${guess}`,
@@ -52,7 +61,7 @@ export default function GameScreen({
       <Title color="white">Opponent's Guess</Title>
       <Box>
         <Number color={Colors.blue900}>{guessNumber}</Number>
-        <Text style={styles.text}>Higher or lower?</Text>
+        {width > 1000 && <Text style={styles.text}>Higher or lower?</Text>}
         <PrimaryButton
           onPress={() => validateGuess("HIGHER")}
           textSize={24}

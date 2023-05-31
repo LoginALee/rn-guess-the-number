@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Alert,
+  KeyboardAvoidingView,
+} from "react-native";
 import { Colors } from "../constants/colors";
 import PrimaryButton from "../components/UI/PrimaryButton";
 import Box from "../components/UI/Box";
+import Title from "../components/UI/Title";
 
 export default function StartGameScreen({ onSelectNumber }) {
   const [temporalSelectedNumber, setTemporalSelectedNumber] = useState("");
@@ -31,37 +38,42 @@ export default function StartGameScreen({ onSelectNumber }) {
   }
 
   return (
-    <View style={styles.mainContainer}>
-      <Box>
-        <TextInput
-          style={styles.textInput}
-          inputMode="numeric"
-          maxLength={2}
-          placeholder="Enter a number..."
-          placeholderTextColor={"white"}
-          value={temporalSelectedNumber}
-          onChangeText={setTemporalSelectedNumber}
-        />
-        <View style={styles.buttonsContainer}>
-          <PrimaryButton
-            style={styles.button}
-            textColor="white"
-            textSize={18}
-            onPress={resetSelectedNumber}
-          >
-            Reset
-          </PrimaryButton>
-          <PrimaryButton
-            textSize={18}
-            style={styles.button}
-            textColor="white"
-            onPress={saveSelectedNumber}
-          >
-            Confirm
-          </PrimaryButton>
-        </View>
-      </Box>
-    </View>
+    <KeyboardAvoidingView>
+      <View style={styles.mainContainer}>
+        <Title style={{ marginBottom: 12 }} color="white">
+          Guess my number
+        </Title>
+        <Box>
+          <TextInput
+            style={styles.textInput}
+            inputMode="numeric"
+            maxLength={2}
+            placeholder="Enter a number..."
+            placeholderTextColor={"white"}
+            value={temporalSelectedNumber}
+            onChangeText={setTemporalSelectedNumber}
+          />
+          <View style={styles.buttonsContainer}>
+            <PrimaryButton
+              style={styles.button}
+              textColor="white"
+              textSize={18}
+              onPress={resetSelectedNumber}
+            >
+              Reset
+            </PrimaryButton>
+            <PrimaryButton
+              textSize={18}
+              style={styles.button}
+              textColor="white"
+              onPress={saveSelectedNumber}
+            >
+              Confirm
+            </PrimaryButton>
+          </View>
+        </Box>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -69,6 +81,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 60,
     flexDirection: "column",
+    flex: 1,
   },
   textInput: {
     flex: 1,

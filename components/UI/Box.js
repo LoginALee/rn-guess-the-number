@@ -1,16 +1,29 @@
 import React from "react";
 import { Colors } from "../../constants/colors";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
 
 export default function Box({ children, style }) {
-  return <View style={[styles.container, style]}>{children}</View>;
+  const { width, height } = useWindowDimensions();
+
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          minWidth: width < 1000 ? "90%" : "80%",
+          minHeight: height < 800 ? "50%" : "30%",
+        },
+        style,
+      ]}
+    >
+      {children}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    minWidth: "90%",
-    minHeight: "45%",
     backgroundColor: Colors.green500,
     alignItems: "center",
     borderTopLeftRadius: 10,

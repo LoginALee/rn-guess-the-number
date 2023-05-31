@@ -1,18 +1,38 @@
 import React from "react";
-import { Image, View, StyleSheet, Text } from "react-native";
+import {
+  Image,
+  View,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+} from "react-native";
 import { Colors } from "../constants/colors";
 import Title from "../components/UI/Title";
 import PrimaryButton from "../components/UI/PrimaryButton";
 
 export default function GameOverScreen({ onRestartGame, rounds, guessNumber }) {
+  const { width, height } = useWindowDimensions();
+
+  let imageStyles = {
+    width: width > 800 ? 110 : 300,
+    height: height < 500 ? 110 : 300,
+    borderRadius: height < 500 ? 55 : 150,
+  };
+
   return (
     <View style={styles.mainContainer}>
+      {console.log({ width, height })}
       <Title color={"white"}>Game Over!</Title>
-      <View style={styles.imageContainer}>
+      <View
+        style={[
+          styles.imageContainer,
+          { width: imageStyles.width, height: imageStyles.height },
+        ]}
+      >
         <Image
           source={require("../assets/images/mountain.png")}
           resizeMethod="scale"
-          style={styles.image}
+          style={[styles.image, { borderRadius: imageStyles.borderRadius }]}
         />
       </View>
       <View style={styles.textContainer}>
